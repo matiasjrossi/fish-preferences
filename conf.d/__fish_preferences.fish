@@ -9,7 +9,7 @@ set --query fish_preferences_path || set --universal fish_preferences_path fish_
 set --query fish_preferences_blessed_prefixes || set --universal fish_preferences_blessed_prefixes _fish_abbr __fish_git_prompt
 set --query fish_preferences_ignored_prefixes || set --universal fish_preferences_ignored_prefixes _
 
-function __fish_preferences_uninstall --on-event fish_preferences_uninstall
+function __fish_preferences_uninstall --on-event __fish_preferences_uninstall
   functions --erase (functions --all | string match '__fish_preferences*')
   set --query fish_preferences_path && set --universal --erase fish_preferences_path
   set --query fish_preferences_blessed_prefixes && set --universal --erase fish_preferences_blessed_prefixes
