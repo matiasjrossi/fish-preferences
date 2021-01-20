@@ -9,7 +9,7 @@ function __fish_preferences_store_variables --argument-names preferences_path
         echo "set --universal $mode $var"
       end
     end
-  end | sort > $output
+  end | env LC_ALL=C sort > $output
   mv $output $preferences_path > /dev/null 2>&1
   set --local result $status
   __fish_preferences_debug "mv output result=$result"
