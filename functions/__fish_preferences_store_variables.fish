@@ -10,13 +10,14 @@ function __fish_preferences_store_variables --argument-names preferences_path
       end
     end
   end | env LC_ALL=C sort > $output
+  set --local dump_file_hash (command git hash-object $output)
   command mv $output $preferences_path > /dev/null 2>&1
   set --local result $status
   __fish_preferences_debug "mv output result=$result"
   if ! test $result -eq 0
     __fish_preferences_warn "Cannot store preferences in \"$preferences_path\""
   else
-    set --universal __fish_preferences_last_hash (command git hash-object $output)
+    set --universal __fish_preferences_last_hash $dump_file_hash
   end
   command rm -f $output 2>&1
   __fish_preferences_debug "rm output status=$status"
