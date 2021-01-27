@@ -15,6 +15,8 @@ function __fish_preferences_store_variables --argument-names preferences_path
   __fish_preferences_debug "mv output result=$result"
   if ! test $result -eq 0
     __fish_preferences_warn "Cannot store preferences in \"$preferences_path\""
+  else
+    set --universal __fish_preferences_last_hash (command git hash-object $output)
   end
   command rm -f $output 2>&1
   __fish_preferences_debug "rm output status=$status"
